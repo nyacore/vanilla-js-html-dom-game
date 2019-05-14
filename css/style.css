@@ -1,0 +1,209 @@
+@keyframes playerIdle {
+	from {
+	}
+	to {
+		background-position-x: -200px;
+	}
+}
+
+@keyframes playerMove {
+	from {
+		background-position-y: -37px;
+		background-position-x: -50px;
+	}
+	to {
+		background-position-y: -37px;
+		background-position-x: -350px;
+	}
+}
+
+@keyframes playerAttack {
+	from {
+		background-position-y: -222px;
+		background-position-x: -50px;
+	}
+	to {
+		background-position-y: -222px;
+		background-position-x: -300px;
+	}
+}
+
+@keyframes playerBlock {
+	from {
+		background-position-y: -296px;
+		background-position-x: -300px;
+	}
+	to {
+		background-position-x: -300px;
+		background-position-y: -296px;
+	}
+}
+
+@keyframes wolfMove {
+	from {
+		background-position-x: 0;
+		background-position-y: -95px;
+	}
+	to {
+		background-position-y: -95px;
+		background-position-x: -360px;
+	}
+}
+
+@keyframes wolfAttack {
+	from {
+		background-position-y: -326px;
+		background-position-x: 0;
+	}
+	to {
+		background-position-y: -326px;
+		background-position-x: -720px;
+	}
+}
+
+@keyframes skeletonMove {
+	from {
+		background-position-y: -115px;
+		background-position-x: 0;
+	}
+	to {
+		background-position-y: -115px;
+		background-position-x: -424px;
+	}
+}
+
+@keyframes skeletonAttack {
+	from {
+		background-position-x: 0;
+		background-position-y: -370px;
+	}
+	to {
+		background-position-x: -430px;
+		background-position-y: -370px;
+
+	}
+}
+
+@keyframes skeletonSoldierAttack {
+	from {
+		background-position-y: -335px;
+		background-position-x: 0;
+
+	}
+	to {
+		background-position-y: -335px;
+		background-position-x: -395px;
+
+	}
+}
+
+@keyframes skeletonSoldierMove {
+	from {
+		background-position-y: -105px;
+		background-position-x: 0;
+	}
+	to {
+		background-position-y: -105px;
+		background-position-x: -368px;
+	}
+}
+
+
+body {
+	margin: 0;
+}
+
+main {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	width: 1024px;
+	height: 768px;
+	background: url('../assets/Background1.png') no-repeat;
+	overflow: hidden;
+}
+
+.player {
+	background: url('../assets/PlayerSpritesheet.png');
+	width: 50px;
+	height: 37px;
+	position: absolute;
+	/* animation: playerIdle 0.6s steps(4) infinite; */
+	/* animation: playerMove 0.75s steps(6) infinite; */
+	/* animation: playerAttack 0.7s steps(5) infinite; */
+	/* animation: playerBlock 0.5s steps(1) infinite; */
+	top: calc(100% - 170px);
+
+	transform: scale(3);
+}
+
+.wolf {
+	background: url('../assets/wolfSpritesheet.png');
+	position: absolute;
+	height: 59px;
+	width: 118px;
+	display: none;
+	/* animation: wolfMove .5s steps(3) infinite; */
+	/* animation: wolfAttack .7s steps(6) infinite; */
+}
+
+.skeleton {
+	background: url('../assets/skeletonSpritesheet.png');
+	position: absolute;
+	width: 106px;
+	height: 130px;
+	/* animation: skeletonAttack .5s steps(4) infinite; */
+	/* animation: skeletonMove .5s steps(4) infinite; */
+}
+
+.skeleton-soldier {
+	background: url('../assets/skeletonSoldierSpritesheet.png');
+	position: absolute;
+	width: 92px;
+	height: 114px;
+	/* animation: skeletonAttack .5s steps(4) infinite; */
+	/* animation: skeletonMove .5s steps(4) infinite; */
+}
+
+.healthbar {
+	background: #FF0000;
+	height: 16px;
+	display: none;
+	position: absolute;
+}
+
+.initial {
+	display: none !important;
+}
+
+.fireball {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: url('../assets/fireball.png');
+}
+
+.ui-holder {
+	position: absolute;
+	z-index: 999;
+}
+
+.ui-holder player-name {
+	height: 16px;
+}
+
+.ui-holder .bar {
+	z-index: 9999;
+	height: 16px;
+}
+
+.ui-holder .hp {
+	background: #FF0000;
+	top: 40px;
+}
+
+.ui-holder .mp {
+	background: #0000FF;
+	top: 60px;
+}
