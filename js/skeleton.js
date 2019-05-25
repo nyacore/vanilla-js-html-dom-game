@@ -21,10 +21,10 @@ export default class Skeleton extends Enemy {
 	clone(enemies) {
 		const newSkeletonElement = document.createElement('div');
 		newSkeletonElement.className = 'skeleton';
-		document.querySelector('main').appendChild(newSkeletonElement);
+		document.querySelector('.objects-holder').appendChild(newSkeletonElement);
 		const newHealthbarElement = document.createElement('div');
 		newHealthbarElement.className = 'healthbar';
-		document.querySelector('main').appendChild(newHealthbarElement);
+		document.querySelector('.objects-holder').appendChild(newHealthbarElement);
 		return new Skeleton(this.x, this.y, newSkeletonElement, this.following, newHealthbarElement, this.observers);
 	}
 }

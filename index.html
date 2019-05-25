@@ -17,12 +17,43 @@
 				<div class="bar mp"></div>
 				<div class="game-timer-holder">Time: <span class="game-timer">00:00:00</span></div>
 				<div class="score-holder">Score: <span class="score">0</span></div>
+				<div class="skill-status">
+					<div class="fireball-holder">Fireball: <span class="fireball-cd">Ready</span></div>
+					<div class="swordstorm-holder">Sword Storm: <span class="swordstorm-cd">Ready</span></div>
+				</div>
 			</div>
-			<div class="player"></div>
-			<div class="healthbar"></div>
-			<div class="wolf initial"></div>
-			<div class="skeleton initial"></div>
-			<div class="skeleton-soldier initial"></div>
+			<div class="objects-holder">
+				<div class="player"></div>
+				<div class="healthbar"></div>
+				<div class="wolf initial"></div>
+				<div class="skeleton initial"></div>
+				<div class="skeleton-soldier initial"></div>
+			</div>
+			<div class="welcome-screen modal">
+				<h3>Добро пожаловать!</h3>
+				<p>Прорвись сквозь полчища врагов, используя крутые навыки!</p>
+				<h3>Управление</h3>
+				<p>Передвижение - стрелки влево и вправо</p>
+				<p>1 - обычный удар</p>
+				<p>2 - блок</p>
+				<p>3 - метание огненного шара</p>
+				<p>4 - град мечей</p>
+				<h3>Вводи свое имя и жми начать игру!</h3>
+				<input type="text" class="nickname" />
+				<button class="start">Начать игру</button>
+			</div>
+			<div class="final-screen modal hidden">
+				<p class="message-holder">You win!</p>
+				<table border="1px" class="records">
+					<tr>
+						<td>#</td>
+						<td>Nickname</td>
+						<td>Time</td>
+						<td>Score</td>
+					</tr>
+				</table>
+				<button class="restart">Again?</button>
+			</div>
 		</main>
 		<script type="module" src="./js/game.js"></script>
 	</body>

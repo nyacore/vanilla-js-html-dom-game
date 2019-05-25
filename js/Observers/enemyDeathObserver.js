@@ -12,8 +12,8 @@ export default class enemyDeathObserver {
 		if (event == 'ENEMY_DEAD') {
 			this.scoreObj.score += 10;
 			const index = this.enemies.indexOf(sender);
-			document.querySelector('main').removeChild(sender.el);
-			document.querySelector('main').removeChild(sender.healthbar);
+			document.querySelector('.objects-holder').removeChild(sender.el);
+			document.querySelector('.objects-holder').removeChild(sender.healthbar);
 			this.enemies.splice(index, 1);
 		}
 	}

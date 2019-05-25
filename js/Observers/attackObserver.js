@@ -21,7 +21,6 @@ export default class attackObserver {
 				}
 			});
 		} else if (event == 'ENEMY_ATTACK_FINISHED') {
-			console.log('Enemy\'s attack finished');
 			const offset1 = sender.x - 20;
 			const offset2 = sender.x + 170;
 

@@ -15,7 +15,7 @@ export default class gameObjectDeathObserver {
 	onNotify(sender, event) {
 		if (event == 'GAMEOBJECT_DIED') {
 			const index = this.gameObjects.indexOf(sender);
-			document.querySelector('main').removeChild(sender.el);
+			document.querySelector('.objects-holder').removeChild(sender.el);
 			this.gameObjects.splice(index, 1);
 		}
 	}

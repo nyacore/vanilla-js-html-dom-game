@@ -120,7 +120,7 @@ main {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	width: 1024px;
 	height: 768px;
-	background: url('../assets/Background1.png') no-repeat;
+	background: url('../assets/Background.png') no-repeat;
 	overflow: hidden;
 }
 
@@ -184,6 +184,13 @@ main {
 	background: url('../assets/fireball.png');
 }
 
+.sword {
+	position: absolute;
+	height: 100px;
+	width: 100px;
+	background: url('../assets/sword.png');
+}
+
 .ui-holder {
 	position: absolute;
 	z-index: 999;
@@ -206,4 +213,29 @@ main {
 .ui-holder .mp {
 	background: #0000FF;
 	top: 60px;
+}
+
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	height: 500px;
+	background: #FFF;
+	text-align: center;
+}
+
+.records {
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.hidden {
+	display: none;
+}
+
+.message-holder {
+	text-align: center;
+	font-size: 30px;
 }

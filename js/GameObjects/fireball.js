@@ -6,7 +6,7 @@ export default class Fireball extends gameObject {
 
 		const fireballElement = document.createElement('div');
 		fireballElement.className = 'fireball';
-		this.el = document.querySelector('main').appendChild(fireballElement);
+		this.el = document.querySelector('.objects-holder').appendChild(fireballElement);
 
 		this.manaCost = 20;
 		this.damage = 20;

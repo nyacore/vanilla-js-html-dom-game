@@ -4,10 +4,7 @@
  * Date: 05.2019
  *
  * TODO:
- * - Welcome screen 
- * - Endgame condition
- * - Final screen
- * - SwordStorm skill
+ * - Skills status
  */
 
 import Player from './player.js';
@@ -47,6 +44,7 @@ export const globals = {
  * Get UI elements from DOM
  */
 const playerNameBar = document.querySelector('.player-name');
+let playerName = 'noName';
 const hpBar = document.querySelector('.hp');
 const mpBar = document.querySelector('.mp');
 const gameScoreBar = document.querySelector('.score');
@@ -219,10 +217,192 @@ const update = () => {
 
 	hpBar.style.width = 100 * player.hp / player.maxHP + 'px';
 	mpBar.style.width = 100 * player.mp / player.maxMP + 'px';
+
 	gameScoreBar.innerHTML = scoreObj.score;
+	playerNameBar.innerHTML = playerName;
+
+	if (player.hp <= 0) {
+		clearInterval(gameTimer);
+		clearInterval(spawnTimer);
+		clearInterval(gameCounterTimer);
+		clearInterval(regenerationTimer);
+		document.querySelector('.objects-holder').innerHTML = '';
+		document.querySelector('.final-screen').classList.toggle('hidden');
+		document.querySelector('.message-holder').innerHTML = 'You win!';
+		document.querySelector('.restart').addEventListener('click', (event) => {
+			document.querySelector('.final-screen').classList.toggle('hidden');
+
+			const objectsHolder = document.querySelector('.objects-holder');
+
+			const newPlayer = document.createElement('div');
+			newPlayer.className = 'player';
+
+			const newWolf = document.createElement('div');
+			newWolf.className = 'wolf initial';
+
+			const newSkeleton = document.createElement('div');
+			newSkeleton.className = 'skeleton initial';
+
+			const newSkeletonSoldier = document.createElement('div');
+			newSkeletonSoldier.className = 'skeleton-soldier initial';
+
+			const newHealthbar = document.createElement('div');
+			newHealthbar.className = 'healthbar';
+
+			enemies = [];
+			gameObjects = [];
+			timePassed = 0;
+			scoreObj.score = 0;
+			objectsHolder.appendChild(newPlayer);
+			objectsHolder.appendChild(newWolf);
+			objectsHolder.appendChild(newSkeleton);
+			objectsHolder.appendChild(newSkeletonSoldier);
+			objectsHolder.appendChild(newHealthbar);
+
+			setup();
+		});
+		// TODO: Select records from database and display it
+		let data = new FormData();
+		data.append('nickname', playerName);
+		data.append('score', scoreObj.score);
+		data.append('time', timePassed);
+		fetch('http://game/records.php', {
+			method: 'POST',
+			body: data,
+		})
+			.then(r => r.json())
+			.then(response => {
+				response.sort((a, b) => {
+					if (a > b) {
+						return 1;
+					} else if (a < b) {
+						return -1;
+					} else return 0;
+				})
+				response = response.slice(0, 10);
+				const table = document.querySelector('.records');
+				response.forEach(e => {
+					const row = document.createElement('tr');
+					const idColumn = document.createElement('td');
+					idColumn.innerHTML = e.id;
+
+					const nicknameColumn = document.createElement('td');
+					nicknameColumn.innerHTML = e.nickname;
+
+					const timeColumn = document.createElement('td');
+					timeColumn.innerHTML = e.time;
+
+					const scoreColumn = document.createElement('td');
+					scoreColumn.innerHTML = e.score;
+
+					row.appendChild(idColumn);
+					row.appendChild(nicknameColumn);
+					row.appendChild(timeColumn);
+					row.appendChild(scoreColumn);
+
+					table.appendChild(row);
+				});
+			});
+
+
+		//
+	}
+
+	if (player.x >= globals.MAP_WIDTH - globals.PLAYER_WIDTH) {
+		clearInterval(gameTimer);
+		clearInterval(spawnTimer);
+		clearInterval(gameCounterTimer);
+		clearInterval(regenerationTimer);
+		document.querySelector('.objects-holder').innerHTML = '';
+		document.querySelector('.final-screen').classList.toggle('hidden');
+		document.querySelector('.message-holder').innerHTML = 'You win!';
+		document.querySelector('.restart').addEventListener('click', (event) => {
+			document.querySelector('.final-screen').classList.toggle('hidden');
+
+			const objectsHolder = document.querySelector('.objects-holder');
+
+			const newPlayer = document.createElement('div');
+			newPlayer.className = 'player';
+
+			const newWolf = document.createElement('div');
+			newWolf.className = 'wolf initial';
+
+			const newSkeleton = document.createElement('div');
+			newSkeleton.className = 'skeleton initial';
+
+			const newSkeletonSoldier = document.createElement('div');
+			newSkeletonSoldier.className = 'skeleton-soldier initial';
+
+			const newHealthbar = document.createElement('div');
+			newHealthbar.className = 'healthbar';
+
+			enemies = [];
+			gameObjects = [];
+			timePassed = 0;
+			scoreObj.score = 0;
+			objectsHolder.appendChild(newPlayer);
+			objectsHolder.appendChild(newWolf);
+			objectsHolder.appendChild(newSkeleton);
+			objectsHolder.appendChild(newSkeletonSoldier);
+			objectsHolder.appendChild(newHealthbar);
+
+			setup();
+		});
+		// TODO: Select records from database and display it
+		let data = new FormData();
+		data.append('nickname', playerName);
+		data.append('score', scoreObj.score);
+		data.append('time', timePassed);
+		fetch('http://game/records.php', {
+			method: 'POST',
+			body: data,
+		})
+			.then(r => r.json())
+			.then(response => {
+				response.sort((a, b) => {
+					if (a > b) {
+						return 1;
+					} else if (a < b) {
+						return -1;
+					} else return 0;
+				})
+				response = response.slice(0, 10);
+				const table = document.querySelector('.records');
+				response.forEach(e => {
+					const row = document.createElement('tr');
+					const idColumn = document.createElement('td');
+					idColumn.innerHTML = e.id;
+
+					const nicknameColumn = document.createElement('td');
+					nicknameColumn.innerHTML = e.nickname;
+
+					const timeColumn = document.createElement('td');
+					timeColumn.innerHTML = e.time;
+
+					const scoreColumn = document.createElement('td');
+					scoreColumn.innerHTML = e.score;
+
+					row.appendChild(idColumn);
+					row.appendChild(nicknameColumn);
+					row.appendChild(timeColumn);
+					row.appendChild(scoreColumn);
+
+					table.appendChild(row);
+				});
+			});
+
+
+		//
+	}
 }
 
 /**
  * Game entry point
  */
-setup();
+const startButton = document.querySelector('.start');
+startButton.addEventListener('click', (event) => {
+	playerName = document.querySelector('.nickname').value;
+	document.querySelector('.welcome-screen').classList.toggle('hidden');
+
+	setup();
+});

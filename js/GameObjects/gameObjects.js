@@ -32,8 +32,10 @@ export default class gameObject {
 		const offset1 = this.x - 20;
 		const offset2 = this.x + 120;
 
+
+
 		enemies.forEach(e => {
-			if (e.x >= offset1 && e.x <= offset2) {
+			if (e.x >= offset1 && e.x <= offset2 && e.y >= this.y - 100 && e.y <= this.y + 100) {
 				e.hp -= this.damage;
 			}
 		});

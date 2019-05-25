@@ -21,10 +21,10 @@ export default class Wolf extends Enemy {
 	clone(enemies) {
 		const newWolfElement = document.createElement('div');
 		newWolfElement.className = 'wolf';
-		document.querySelector('main').appendChild(newWolfElement);
+		document.querySelector('.objects-holder').appendChild(newWolfElement);
 		const newHealthbarElement = document.createElement('div');
 		newHealthbarElement.className = 'healthbar';
-		document.querySelector('main').appendChild(newHealthbarElement);
+		document.querySelector('.objects-holder').appendChild(newHealthbarElement);
 		return new Wolf(this.x, this.y, newWolfElement, this.following, newHealthbarElement, this.observers);
 	}
 }

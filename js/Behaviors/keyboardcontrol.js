@@ -26,6 +26,9 @@ export default class KeyboardControl extends Behavior {
 		this.isFireballReady = true;
 		this.fireballTimer;
 
+		this.isSwordStormReady = true;
+		this.swordStormTimer;
+
 		window.addEventListener('keydown', (event) => {
 			this.keyState[event.which] = true;
 		});
@@ -36,6 +39,25 @@ export default class KeyboardControl extends Behavior {
 	}
 
 	update() {
+		if (this.keyState[52]) {
+			if (this.isSwordStormReady) {
+				this.entity.notify(this.entity, 'SWORDSTORM_LAUNCHED');
+				this.isSwordStormReady = false;
+				let timeLeft = 15;
+
+				this.swordStormTimer = setInterval(() => {
+					document.querySelector('.swordstorm-cd').innerHTML = timeLeft--;
+
+				}, 1000);
+
+				setTimeout(() => {
+					clearInterval(this.swordStormTimer);
+					this.isSwordStormReady = true;
+					document.querySelector('.swordstorm-cd').innerHTML = 'Ready';
+				}, 15000);
+			}
+		}
+
 		if (this.keyState[51]) {
 			if (this.isFireballReady) {
 				this.entity.notify(this.entity, 'FIREBALL_LAUNCHED');
@@ -44,14 +66,14 @@ export default class KeyboardControl extends Behavior {
 
 
 				this.fireballTimer = setInterval(() => {
-					// document.querySelector('.fireball-cooldown-holder').innerHTML = timeLeft--;
-					timeLeft--;
+					document.querySelector('.fireball-cd').innerHTML = timeLeft--;
 				}, 1000);
 
 				setTimeout(() => {
 					clearInterval(this.fireballTimer);
 					this.isFireballReady = true;
-				}, 4000);
+					document.querySelector('.fireball-cd').innerHTML = 'Ready';
+				}, 5000);
 			}
 		}
 

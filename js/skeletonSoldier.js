@@ -21,10 +21,10 @@ export default class SkeletonSoldier extends Enemy {
 	clone(enemies) {
 		const newSkeletonSoldierElement = document.createElement('div');
 		newSkeletonSoldierElement.className = 'skeleton-soldier';
-		document.querySelector('main').appendChild(newSkeletonSoldierElement);
+		document.querySelector('.objects-holder').appendChild(newSkeletonSoldierElement);
 		const newHealthbarElement = document.createElement('div');
 		newHealthbarElement.className = 'healthbar';
-		document.querySelector('main').appendChild(newHealthbarElement);
+		document.querySelector('.objects-holder').appendChild(newHealthbarElement);
 		return new SkeletonSoldier(this.x, this.y, newSkeletonSoldierElement, this.following, newHealthbarElement, this.observers);
 	}
 }
